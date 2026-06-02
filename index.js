@@ -322,6 +322,7 @@ end)
 `;
 
 // ฟังก์ชันสุ่มชื่อและบีบโค้ดส่งออกสดๆ บนอากาศ
+// เปลี่ยนฟังก์ชันด้านล่างสุดของไฟล์ index.js ให้เป็นชุดนี้:
 function dynamicObfuscate(source) {
     const randomID = () => "_" + Math.random().toString(36).substring(2, 9);
     let key_GUI = randomID();
@@ -329,12 +330,17 @@ function dynamicObfuscate(source) {
     let key_CRATE = randomID();
     
     let result = source;
+    // ปรับระบบเปลี่ยนชื่อตัวแปรให้ค้นหาได้แม่นยำขึ้น
     result = result.replace(/UnifiedSmartScriptGUI/g, key_GUI);
     result = result.replace(/AutoDigEnabled/g, key_DIG);
     result = result.replace(/teleportToCrate/g, key_CRATE);
-    result = result.replace(/\s+/g, ' '); 
+    
+    // 🔥 จุดสำคัญ: สั่งลบช่องว่างและการขึ้นบรรทัดใหม่ทั้งหมด ยุบเหลือบรรทัดเดียวป้องกันการอ่าน
+    result = result.replace(/\r?\n|\r/g, " ");
+    result = result.replace(/\s+/g, " "); 
     return result;
 }
+
 
 app.get('/', (req, res) => {
     const freshCode = dynamicObfuscate(REAL_LUAU_SCRIPT);
