@@ -336,7 +336,8 @@ function dynamicObfuscate(source) {
     return result;
 }
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
+    
     res.setHeader('Content-Type', 'text/plain; charset=utf-8');
     const freshCode = dynamicObfuscate(REAL_LUAU_SCRIPT);
     res.send(freshCode);
