@@ -1,7 +1,6 @@
 const express = require('express');
-const app = express(); 
+const app = express();
 
-// 🔒 สคริปต์หลักฉบับเต็มของคุณ (ตัวที่อ่านรู้เรื่องและสมบูรณ์แล้ว)
 const REAL_LUAU_SCRIPT = `
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
@@ -328,21 +327,17 @@ function dynamicObfuscate(source) {
     let key_CRATE = randomID();
     
     let result = source;
-    // ปรับแก้ให้รองรับข้อความดิบที่ดักจับคำสำคัญได้แม่นยำ
     result = result.replace(/UnifiedSmartScriptGUI/g, key_GUI);
     result = result.replace(/AutoDigEnabled/g, key_DIG);
     result = result.replace(/teleportToCrate/g, key_CRATE);
     
-    // บีบอัดช่องว่างและการขึ้นบรรทัดใหม่ทั้งหมด
     result = result.replace(/\r?\n|\r/g, " ");
     result = result.replace(/\s+/g, " "); 
     return result;
 }
 
-// 🔥 จุดสำคัญ: ตรวจสอบให้มั่นใจว่า app.get เรียกใช้ฟังก์ชันแปลงข้อความและส่งออกถูกวิธี
 app.get('/', (req, res) => {
     res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-    // ดึงค่าสคริปต์หลักของคุณมาผ่านตัวแปลง แล้วพ่นค่าที่บีบแล้วออกไปทันที
     const freshCode = dynamicObfuscate(REAL_LUAU_SCRIPT);
     res.send(freshCode);
 });
