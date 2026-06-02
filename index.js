@@ -1,5 +1,5 @@
 const express = require('express');
-const app = express();
+const app = express(); 
 
 // 🔒 สคริปต์หลักฉบับเต็มของคุณ (ตัวที่อ่านรู้เรื่องและสมบูรณ์แล้ว)
 const REAL_LUAU_SCRIPT = `
