@@ -78,6 +78,54 @@ body {
   color: #aeb4c0;
 }
 
+.agent-input-area {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #252a33;
+  border-radius: 12px;
+  background: #151820;
+}
+
+.agent-input-area label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.875rem;
+  color: #aeb4c0;
+}
+
+#agent-input {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px;
+  border: 1px solid #252a33;
+  border-radius: 8px;
+  background: #0f1115;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+#agent-input:focus {
+  outline: none;
+  border-color: #ffffff;
+}
+
+#agent-submit {
+  margin-top: 12px;
+  padding: 10px 18px;
+  border: 1px solid #252a33;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #0f1115;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+#agent-submit:hover {
+  opacity: 0.9;
+}
+
 .app-footer {
   padding: 16px 24px;
   border-top: 1px solid #252a33;
