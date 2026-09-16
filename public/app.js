@@ -1,4 +1,10 @@
 async function loadSystemStatus() {
+  const statusElement = document.querySelector("#system-status");
+
+  if (!statusElement) {
+    return;
+  }
+
   try {
     const response = await fetch("/api/status");
 
@@ -8,13 +14,10 @@ async function loadSystemStatus() {
 
     const data = await response.json();
 
-    const statusElement = document.querySelector("#system-status");
-
-    if (statusElement) {
-      statusElement.textContent = data.status;
-    }
+    statusElement.textContent = data.status || "unknown";
   } catch (error) {
     console.error("System status error:", error);
+    statusElement.textContent = "offline";
   }
 }
 
