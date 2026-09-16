@@ -1,10 +1,10 @@
-UI
+# UI
 
-The "ui/" directory is reserved for the user interface layer of AI-MASK Web Agent.
+The `ui/` directory is reserved for the user interface layer of AI-MASK Web Agent.
 
 This layer is intended to define and support the interface through which users interact with the agent system.
 
-Responsibilities
+## Responsibilities
 
 The UI layer may contain:
 
@@ -16,27 +16,29 @@ The UI layer may contain:
 - UI state handling
 - User interaction logic
 
-Interface Structure
+## Interface Flow
 
-A future UI structure may follow a pattern such as:
+A future UI flow may follow a structure such as:
 
+```text
 User
-  ↓
+    ↓
 UI
-  ↓
+    ↓
 Agent Request
-  ↓
+    ↓
 Core / Orchestration
-  ↓
+    ↓
 Agent Result
-  ↓
+    ↓
 UI
-  ↓
+    ↓
 User
+```
 
-The exact interface structure will be defined as the application develops.
+The exact interface flow will be defined as the application develops.
 
-Agent Interaction
+## Agent Interaction
 
 The UI may provide controls for:
 
@@ -49,7 +51,7 @@ The UI may provide controls for:
 
 The UI should communicate with application logic through defined interfaces rather than duplicating backend responsibilities.
 
-State
+## State Management
 
 The UI may maintain temporary interface state such as:
 
@@ -64,59 +66,67 @@ UI state should remain limited to information required by the interface.
 
 Application and workflow state belongs to the appropriate backend layers.
 
-Boundaries
+## Component Coordination
 
-The UI layer should remain separate from:
+The UI may interact with application components such as:
 
+```text
 core/
+orchestration/
 providers/
 models/
-vault/
 generation/
 queue/
-orchestration/
+vault/
+```
 
-These components may provide services or data to the UI through defined application interfaces.
+Each component should remain responsible for its own defined role.
 
-The UI should not contain provider-specific logic, model implementation, credential handling, or workflow orchestration.
+The UI should present and manage user interaction rather than duplicating backend functionality.
 
-Frontend Assets
+## Frontend Assets
 
 Frontend assets may be located within:
 
+```text
 public/
+```
 
-The relationship between "ui/" and "public/" will be defined as the frontend architecture becomes more established.
+The relationship between `ui/` and `public/` will be defined as the frontend architecture becomes more established.
 
 The project should avoid unnecessary duplication between UI logic and public frontend assets.
 
-Error Handling
+## Error Handling
 
 The UI should provide clear feedback when an agent operation fails.
 
 Possible states may include:
 
+```text
 Idle
-  ↓
+    ↓
 Submitting
-  ↓
+    ↓
 Processing
-  ↓
+    ↓
 Completed
+```
 
 or:
 
+```text
 Idle
-  ↓
+    ↓
 Submitting
-  ↓
+    ↓
 Processing
-  ↓
+    ↓
 Failed
+```
 
 The exact presentation of these states depends on the final interface implementation.
 
-Accessibility
+## Accessibility
 
 Future UI components should consider basic accessibility requirements, including:
 
@@ -128,13 +138,13 @@ Future UI components should consider basic accessibility requirements, including
 
 Accessibility should be considered as UI components are introduced rather than added as an unrelated layer later.
 
-Current Status
+## Current Status
 
-The "ui/" directory is currently a reserved foundation.
+The `ui/` directory is currently a reserved foundation.
 
-The current application already contains a basic web interface through the "public/" directory, but the dedicated UI architecture is not yet finalized.
+The current application already contains a basic web interface through the `public/` directory, but the dedicated UI architecture is not yet finalized.
 
-Development Principle
+## Development Principle
 
 Keep the UI simple, clear, modular, and easy to maintain.
 
