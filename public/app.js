@@ -21,6 +21,10 @@ async function loadSystemStatus() {
   }
 }
 
+// --------------------------------------------------
+// Agent UI Helpers
+// --------------------------------------------------
+
 function setAgentStatus(status) {
   const statusElement = document.querySelector("#agent-status");
 
@@ -71,26 +75,72 @@ function setAgentProcessing(processing) {
   submitElement.disabled = processing;
 }
 
+// --------------------------------------------------
+// Agent API
+// --------------------------------------------------
+
+async function sendAgentRequest(request) {
+  const response = await fetch("/api/agent", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      request
+    })
+  });
+
+  let data;
+
+  try {
+    data = await response.json();
+  } catch (error) {
+    throw new Error("Invalid server response");
+  }
+
+  if (!response.ok) {
+    throw new Error(
+      data.error || "Agent request failed"
+    );
+  }
+
+  return data;
+}
+
+// --------------------------------------------------
+// Agent Request Processing
+// --------------------------------------------------
+
 async function processAgentRequest(request) {
   setAgentStatus("Processing...");
   setAgentProcessing(true);
 
   try {
-    setAgentOutput(`Request received:\n\n${request}`);
+    const data = await sendAgentRequest(request);
 
-    await new Promise((resolve) => {
-      setTimeout(resolve, 300);
-    });
+    if (data.message) {
+      setAgentOutput(data.message);
+    } else {
+      setAgentOutput("Agent request received.");
+    }
 
     setAgentStatus("Ready");
   } catch (error) {
     console.error("Agent request error:", error);
-    setAgentOutput("An error occurred while processing the request.");
+
+    setAgentOutput(
+      error.message || "An error occurred while processing the request."
+    );
+
     setAgentStatus("Error");
   } finally {
     setAgentProcessing(false);
   }
 }
+
+// --------------------------------------------------
+// Agent Input
+// --------------------------------------------------
 
 function initializeAgentInput() {
   const inputElement = document.querySelector("#agent-input");
@@ -113,17 +163,30 @@ function initializeAgentInput() {
 
   clearElement.addEventListener("click", () => {
     clearAgentInput();
+
     setAgentOutput("No response yet.");
     setAgentStatus("Ready");
+
+    inputElement.focus();
   });
 
   inputElement.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" && (event.ctrlKey || event.metaKey)) {
+    if (
+      event.key === "Enter" &&
+      (event.ctrlKey || event.metaKey)
+    ) {
       event.preventDefault();
-      submitElement.click();
+
+      if (!submitElement.disabled) {
+        submitElement.click();
+      }
     }
   });
 }
+
+// --------------------------------------------------
+// Initial Application Setup
+// --------------------------------------------------
 
 document.addEventListener("DOMContentLoaded", () => {
   loadSystemStatus();
