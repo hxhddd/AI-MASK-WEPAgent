@@ -1,0 +1,14 @@
+{
+  "name": "ai-mask-wep-agent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI-MASK Web Agent",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
