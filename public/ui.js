@@ -23,6 +23,24 @@ function initializeUI() {
   }
 }
 
+function initializeAgentDisplay() {
+  const statusElement = document.querySelector("#agent-status");
+  const outputElement = document.querySelector("#agent-output");
+
+  if (typeof AIMASK_CONFIG === "undefined") {
+    return;
+  }
+
+  if (statusElement) {
+    statusElement.textContent =
+      AIMASK_CONFIG.agent?.defaultStatus || "Ready";
+  }
+
+  if (outputElement) {
+    outputElement.textContent = "No response yet.";
+  }
+}
+
 function updateAgentStatus(status) {
   const statusElement = document.querySelector("#agent-status");
 
@@ -30,26 +48,35 @@ function updateAgentStatus(status) {
     return;
   }
 
-  statusElement.textContent = status || "Ready";
+  statusElement.textContent = status;
 }
 
-function updateAgentOutputType(type) {
-  const outputTypeElement =
-    document.querySelector("#agent-output-type");
+function updateAgentOutput(message) {
+  const outputElement = document.querySelector("#agent-output");
 
-  if (!outputTypeElement) {
+  if (!outputElement) {
     return;
   }
 
-  outputTypeElement.textContent = type || "Response";
+  outputElement.textContent = message;
 }
 
-function resetAgentUI() {
-  updateAgentStatus("Ready");
-  updateAgentOutputType("Response");
+function initializeUIEvents() {
+  document.addEventListener("agent:status", (event) => {
+    if (event.detail?.status) {
+      updateAgentStatus(event.detail.status);
+    }
+  });
+
+  document.addEventListener("agent:output", (event) => {
+    if (typeof event.detail?.message === "string") {
+      updateAgentOutput(event.detail.message);
+    }
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   initializeUI();
-  resetAgentUI();
+  initializeAgentDisplay();
+  initializeUIEvents();
 });
