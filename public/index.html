@@ -18,45 +18,52 @@
   <div class="app-shell">
 
     <header class="app-header">
-      <div class="app-header-main">
+      <div>
         <h1 id="app-name">AI-MASK Web Agent</h1>
 
-        <p class="app-meta">
+        <p>
           Version <span id="app-version">Loading...</span>
           · Environment <span id="app-environment">Loading...</span>
         </p>
       </div>
-
-      <div class="agent-header-status">
-        <span class="status-label">Agent</span>
-        <span id="agent-status">Ready</span>
-      </div>
     </header>
 
     <main class="app-main">
-      <section class="agent-panel">
+      <section class="agent-panel" aria-labelledby="agent-title">
 
         <div class="agent-placeholder">
-          <h2>Web Agent</h2>
+          <h2 id="agent-title">Web Agent</h2>
+
           <p>
-            AI-MASK Agent workspace is ready.
+            Agent workspace is ready.
           </p>
         </div>
 
-        <div class="agent-input-area">
-          <div class="agent-section-header">
-            <label for="agent-input">Agent Input</label>
-            <span>Request</span>
+        <div class="agent-output-area">
+          <div class="agent-output-header">
+            <span>Agent Status</span>
+            <span id="agent-status">Ready</span>
           </div>
+
+          <pre
+            id="agent-output"
+            aria-live="polite"
+          >No response yet.</pre>
+        </div>
+
+        <div class="agent-input-area">
+          <label for="agent-input">
+            Agent Input
+          </label>
 
           <textarea
             id="agent-input"
             rows="5"
             placeholder="Enter your request..."
-            aria-label="Agent request input"
+            aria-label="Agent request"
           ></textarea>
 
-          <div class="agent-controls">
+          <div class="agent-actions">
             <button
               id="agent-submit"
               type="button"
@@ -75,21 +82,6 @@
           <p class="agent-input-hint">
             Press Ctrl + Enter to send.
           </p>
-        </div>
-
-        <div class="agent-output-area">
-          <div class="agent-section-header">
-            <h3>Agent Output</h3>
-            <span id="agent-output-type">Response</span>
-          </div>
-
-          <div
-            id="agent-output"
-            role="status"
-            aria-live="polite"
-          >
-            No response yet.
-          </div>
         </div>
 
       </section>
