@@ -38,7 +38,8 @@ body {
   font-size: 0.875rem;
 }
 
-#app-version {
+#app-version,
+#app-environment {
   color: #ffffff;
 }
 
