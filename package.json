@@ -6,7 +6,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "node index.js"
+    "dev": "node index.js",
+    "check": "node --check index.js"
+  },
+  "engines": {
+    "node": ">=18"
   },
   "dependencies": {
     "express": "^5.1.0"
