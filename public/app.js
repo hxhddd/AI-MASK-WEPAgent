@@ -21,4 +21,26 @@ async function loadSystemStatus() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", loadSystemStatus);
+function initializeAgentInput() {
+  const inputElement = document.querySelector("#agent-input");
+  const submitElement = document.querySelector("#agent-submit");
+
+  if (!inputElement || !submitElement) {
+    return;
+  }
+
+  submitElement.addEventListener("click", () => {
+    const request = inputElement.value.trim();
+
+    if (!request) {
+      return;
+    }
+
+    console.log("Agent request:", request);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadSystemStatus();
+  initializeAgentInput();
+});
