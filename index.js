@@ -17,7 +17,7 @@ app.get("/api/status", (req, res) => {
 });
 
 // Fallback to the main web page
-app.get("*", (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
