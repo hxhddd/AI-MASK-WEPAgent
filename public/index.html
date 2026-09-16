@@ -18,12 +18,19 @@
   <div class="app-shell">
 
     <header class="app-header">
-      <h1 id="app-name">AI-MASK Web Agent</h1>
+      <div class="app-header-main">
+        <h1 id="app-name">AI-MASK Web Agent</h1>
 
-      <p>
-        Version <span id="app-version">Loading...</span>
-        · Environment <span id="app-environment">Loading...</span>
-      </p>
+        <p class="app-meta">
+          Version <span id="app-version">Loading...</span>
+          · Environment <span id="app-environment">Loading...</span>
+        </p>
+      </div>
+
+      <div class="agent-header-status">
+        <span class="status-label">Agent</span>
+        <span id="agent-status">Ready</span>
+      </div>
     </header>
 
     <main class="app-main">
@@ -31,21 +38,58 @@
 
         <div class="agent-placeholder">
           <h2>Web Agent</h2>
-          <p>Agent workspace is ready.</p>
+          <p>
+            AI-MASK Agent workspace is ready.
+          </p>
         </div>
 
         <div class="agent-input-area">
-          <label for="agent-input">Agent Input</label>
+          <div class="agent-section-header">
+            <label for="agent-input">Agent Input</label>
+            <span>Request</span>
+          </div>
 
           <textarea
             id="agent-input"
-            rows="4"
+            rows="5"
             placeholder="Enter your request..."
+            aria-label="Agent request input"
           ></textarea>
 
-          <button id="agent-submit" type="button">
-            Send
-          </button>
+          <div class="agent-controls">
+            <button
+              id="agent-submit"
+              type="button"
+            >
+              Send
+            </button>
+
+            <button
+              id="agent-clear"
+              type="button"
+            >
+              Clear
+            </button>
+          </div>
+
+          <p class="agent-input-hint">
+            Press Ctrl + Enter to send.
+          </p>
+        </div>
+
+        <div class="agent-output-area">
+          <div class="agent-section-header">
+            <h3>Agent Output</h3>
+            <span id="agent-output-type">Response</span>
+          </div>
+
+          <div
+            id="agent-output"
+            role="status"
+            aria-live="polite"
+          >
+            No response yet.
+          </div>
         </div>
 
       </section>
