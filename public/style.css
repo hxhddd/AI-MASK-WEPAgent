@@ -15,21 +15,70 @@ body {
   color: #ffffff;
 }
 
-main {
+.app-shell {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid #252a33;
+  background: #151820;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 32px 24px;
+}
+
+.agent-panel {
+  width: 100%;
+  max-width: 900px;
+}
+
+.agent-placeholder {
+  min-height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 32px;
+  border: 1px solid #252a33;
+  border-radius: 12px;
+  background: #151820;
+  text-align: center;
 }
 
-h1 {
-  margin: 0 0 12px;
-  font-size: 2rem;
+.agent-placeholder h2 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
 }
 
-p {
+.agent-placeholder p {
   margin: 0;
   color: #aeb4c0;
+}
+
+.app-footer {
+  padding: 16px 24px;
+  border-top: 1px solid #252a33;
+  background: #151820;
+  text-align: center;
+}
+
+.app-footer p {
+  margin: 0;
+  color: #aeb4c0;
+}
+
+#system-status {
+  color: #ffffff;
 }
