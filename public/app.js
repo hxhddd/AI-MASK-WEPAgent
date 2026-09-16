@@ -24,8 +24,9 @@ async function loadSystemStatus() {
 function initializeAgentInput() {
   const inputElement = document.querySelector("#agent-input");
   const submitElement = document.querySelector("#agent-submit");
+  const outputElement = document.querySelector("#agent-output");
 
-  if (!inputElement || !submitElement) {
+  if (!inputElement || !submitElement || !outputElement) {
     return;
   }
 
@@ -36,6 +37,7 @@ function initializeAgentInput() {
       return;
     }
 
+    outputElement.textContent = request;
     console.log("Agent request:", request);
   });
 }
