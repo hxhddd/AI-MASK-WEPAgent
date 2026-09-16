@@ -23,4 +23,33 @@ function initializeUI() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", initializeUI);
+function updateAgentStatus(status) {
+  const statusElement = document.querySelector("#agent-status");
+
+  if (!statusElement) {
+    return;
+  }
+
+  statusElement.textContent = status || "Ready";
+}
+
+function updateAgentOutputType(type) {
+  const outputTypeElement =
+    document.querySelector("#agent-output-type");
+
+  if (!outputTypeElement) {
+    return;
+  }
+
+  outputTypeElement.textContent = type || "Response";
+}
+
+function resetAgentUI() {
+  updateAgentStatus("Ready");
+  updateAgentOutputType("Response");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initializeUI();
+  resetAgentUI();
+});
