@@ -8,8 +8,27 @@ const AIMASK_CONFIG = {
 
   agent: {
     defaultStatus: "Ready",
-    defaultOutputType: "Response",
+    defaultOutput: "No response yet.",
     processingLabel: "Processing...",
-    errorLabel: "Error"
+    readyLabel: "Ready",
+    errorLabel: "Error",
+    defaultResponse: "Agent request received."
+  },
+
+  endpoints: {
+    status: "/status",
+    agent: "/agent"
+  },
+
+  ui: {
+    inputPlaceholder: "Enter your request...",
+    sendLabel: "Send",
+    clearLabel: "Clear",
+    inputHint: "Press Ctrl + Enter to send."
+  },
+
+  request: {
+    method: "POST",
+    contentType: "application/json"
   }
 };
